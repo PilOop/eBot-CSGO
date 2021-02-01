@@ -383,7 +383,7 @@ class Match implements Taskable {
 
         // This case happens only when the bot shutdown and restart at this status
         if ($this->currentMap->getStatus() == Map::STATUS_END_KNIFE) {
-            $this->addLog("Setting round to knife round, because previous knife round did not finsh.");
+            $this->addLog("Setting round to knife round, because previous knife round did not finish.");
             $this->currentMap->setStatus(Map::STATUS_WU_KNIFE, true);
             $this->setStatus(Map::STATUS_WU_KNIFE, true);
         }
@@ -1842,12 +1842,12 @@ class Match implements Taskable {
             \eBot\Events\EventDispatcher::getInstance()->dispatchEvent($event);
         }
         $this->roundEndEvent = true;
-        //$this->say("Round processing complete");
-        if ($this->getNbRound() == $this->maxRound + 1 || $this->ot_maxround + 1) {
-            // Ensure that halftime_pausetimer is set
-            // $this->say("Forcing sideswap!");
-            $this->autoSkipWarmup();
-        }
+        $this->say("Round processing complete");
+        // if ($this->getNbRound() == $this->maxRound + 1 || $this->ot_maxround + 1) {
+            // // Ensure that halftime_pausetimer is set
+            // // $this->say("Forcing sideswap!");
+            // $this->autoSkipWarmup();
+        // }
     }
 
     private $needDelTask = false;
@@ -3222,6 +3222,7 @@ class Match implements Taskable {
     }
 
     public function autoSkipWarmup() {
+		// PilOop: Not used
         if ($this->isWarmupRound()) {
             $this->addLog("The warmup has been skipped by eBot.");
             $this->addMatchLog("The warmup has been skipped by eBot.");
